@@ -83,24 +83,18 @@
                         .toLowerCase()
                         .includes(recherche.toLowerCase())
                 ) {
-                    res.push(element);
+                    if (!element.dead || !alive) {
+                        res.push(element);
+                    }
                 }
+            }
+            if (alphabetical) {
+                res.sort((a, b) => (a.name > b.name ? 1 : -1));
             }
         });
         return res;
     }
 
-    function filterByName(array, filter) {
-        personsToDisplay = [];
-        array.forEach((element) => {
-            if (
-                element.name.toLowerCase().includes(filter.toLowerCase()) ||
-                element.surname.toLowerCase().includes(filter.toLowerCase())
-            ) {
-                personsToDisplay.push(element);
-            }
-        });
-    }
     function reset() {
         personsToDisplay = persons;
         recherche = "";
@@ -117,11 +111,7 @@
     >
         Par ordre alphabétique
     </button>
-    <input
-        type="text"
-        bind:value={recherche}
-        on:input={(e) => filterByName(persons, recherche)}
-    />
+    <input type="text" bind:value={recherche} />
     <input
         type="range"
         name="age"
