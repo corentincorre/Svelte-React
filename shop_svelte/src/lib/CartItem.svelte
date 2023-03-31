@@ -15,9 +15,17 @@
     };
 
     const more = () => {
-        return game.quantity++;
+        game.quantity++;
+        let tempCart = $cart;
+        $cart = [];
+        $cart = tempCart;
     };
-    const less = () => (game.quantity > 1 ? game.quantity-- : null);
+    const less = () => {
+        game.quantity > 1 ? game.quantity-- : null;
+        let tempCart = $cart;
+        $cart = [];
+        $cart = tempCart;
+    };
     console.log(game);
 </script>
 
