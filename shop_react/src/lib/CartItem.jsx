@@ -6,6 +6,7 @@ export default function CartItem({ game, removeFromCart, cart }) {
     const setQuantity = (quantity) => {
         game.quantity = quantity
     }
+    console.log(game.quantity)
 
     return (
         <div id="game-{game.id}" className="cart-item">

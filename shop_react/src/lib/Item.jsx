@@ -16,7 +16,7 @@ export default function Item({ game, quantity, setQuantity }) {
                     ))}
                 </div>
             </div>
-            <QuantityCounter quantity={quantity} setQuantity={setQuant} />
+            <QuantityCounter key={game.id} quantity={quantity} setQuantity={setQuant} />
 
             <div className="item-price">{game.price}€</div>
         </div>
