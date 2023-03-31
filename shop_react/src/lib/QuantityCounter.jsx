@@ -3,7 +3,7 @@ export default function QuantityCounter(quantity) {
         return quantity.setQuantity(quantity => quantity + 1)
     }
     const less = () => {
-        return quantity > 1 ? setQuantity(quantity => quantity - 1) : false
+        return quantity.quantity > 1 ? quantity.setQuantity(quantity => quantity - 1) : false
     }
 
 
