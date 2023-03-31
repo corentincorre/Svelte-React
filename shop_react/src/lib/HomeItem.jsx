@@ -1,10 +1,12 @@
 import Item from './Item'
+import { useState } from 'react';
 export default function HomeItem({ game, addToCart }) {
-    let quantity = 1
+    const [quantity, setQuantity] = useState(1);
+
 
     return (
         <div id="game-{game.id}" className="home-item">
-            <Item game={game} />
+            <Item key={game.id} game={game} quantity={quantity} setQuantity={setQuantity} />
             <button
                 className="add"
                 onClick={() => {

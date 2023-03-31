@@ -18,6 +18,7 @@
         return game.quantity++;
     };
     const less = () => (game.quantity > 1 ? game.quantity-- : null);
+    console.log(game);
 </script>
 
 <div id="game-{game.id}" class="cart-item">

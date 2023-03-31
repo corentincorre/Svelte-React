@@ -1,5 +1,9 @@
 import QuantityCounter from "./QuantityCounter"
-export default function Item({ game }) {
+export default function Item({ game, quantity, setQuantity }) {
+    const setQuant = (quantity) => {
+        return setQuantity(quantity)
+    }
+
 
     return (
         <div className="item-infos">
@@ -12,7 +16,7 @@ export default function Item({ game }) {
                     ))}
                 </div>
             </div>
-            <QuantityCounter quantity={game.quantity} />
+            <QuantityCounter quantity={quantity} setQuantity={setQuant} />
 
             <div className="item-price">{game.price}€</div>
         </div>

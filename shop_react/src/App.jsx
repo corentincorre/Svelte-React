@@ -28,13 +28,23 @@ function App() {
   function checkout() {
     setHideCart(1);
     setCart([]);
+    console.log('test')
     return console.log("Vous avez payé");
   }
   function addToCart(game, quantity) {
+    let tempCart = cart
+    for (let item of tempCart) {
+      if (item.id === game.id) {
+        item.quantity += quantity;
+        setCart(c => []);
+        return setCart(c => tempCart);
+      }
+    }
     let res = game;
     res.quantity = quantity
     setCart([...cart, res]);
   }
+
   function removeFromCart(game) {
     let res = cart.filter((x) => {
       return x.id != game.id;
@@ -44,11 +54,15 @@ function App() {
   function showCart() {
     return setHideCart(0)
   }
+  function hideCartByLink(e) {
+    e.preventDefault()
+    return setHideCart(1)
+  }
 
   return (
     <>
       <header>
-        <a href="/" id="site-logo" onClick={() => setHideCart(1)} />
+        <a href="/" id="site-logo" onClick={(e) => hideCartByLink(e)} />
         <Cart price={getPrice()} count={getCount()} showCart={showCart}></Cart>
       </header>
       <main className={hideCart ? '' : 'hide'}>
@@ -60,10 +74,10 @@ function App() {
         </div>
       </main>
       <div className={"cart" + (hideCart ? ' hide' : '')}>
-        <a href="/" className="back" onClick={() => setHideCart(1)}>
+        <a href="/" className="back" onClick={(e) => hideCartByLink(e)}>
           Retour à la boutique
         </a>
-        <div class="labels">
+        <div className="labels">
           <p>Quantité</p>
           <p>Prix unitaire</p>
           <p>Prix total</p>

@@ -3,17 +3,19 @@
     export let game;
     import { cart } from "../data/stores";
 
-    const addToCart = (product) => {
+    const addToCart = (product, qnt) => {
         for (let item of $cart) {
             if (item.id === product.id) {
-                item.quantity += product.quantity;
+                item.quantity += qnt;
                 $cart = $cart;
-                product.quantity = 1;
-                return;
+
+                return (qnt = 1);
             }
         }
+        console.log(qnt);
+        product["quantity"] = qnt;
         $cart = [...$cart, product];
-        product.quantity = 1;
+        return (qnt = 1);
     };
 
     $: game.quantity = 1;
@@ -27,7 +29,7 @@
     <button
         class="add"
         on:click={() => {
-            addToCart(game);
+            addToCart(game, game.quantity);
         }}>Ajouter au panier</button
     >
 </div>
